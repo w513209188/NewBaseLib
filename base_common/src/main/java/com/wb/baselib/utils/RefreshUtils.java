@@ -1,0 +1,75 @@
+package com.wb.baselib.utils;
+
+import android.content.Context;
+import android.support.annotation.ColorRes;
+
+import com.scwang.smartrefresh.header.WaterDropHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.wb.baselib.R;
+
+/**
+ * Created by Administrator on 2018/4/2.
+ */
+
+public class RefreshUtils {
+    private static  RefreshUtils refreshUtils;
+    private SmartRefreshLayout smartRefreshLayout;
+    private Context mContext;
+    public static RefreshUtils getInstance(){
+        if(refreshUtils==null){
+            refreshUtils=new RefreshUtils();
+        }
+        return refreshUtils;
+    }
+
+    /**
+     * 初始化默认样式
+     * @param refreshLayout
+     * @param context
+     */
+    public void initRefreSh(SmartRefreshLayout refreshLayout, Context context){
+        this.smartRefreshLayout=refreshLayout;
+        this.mContext=context;
+        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(mContext).setSpinnerStyle(SpinnerStyle.Scale));
+        smartRefreshLayout.setEnableFooterTranslationContent(true);
+        smartRefreshLayout.setEnableHeaderTranslationContent(false);
+        smartRefreshLayout.setPrimaryColorsId(R.color.main_bg, android.R.color.white);
+    }
+
+    /**
+     * 设置刷新头部样式
+     * @param refreshHeader
+     */
+    public void ReshfreHeadStyle(RefreshHeader refreshHeader){
+        smartRefreshLayout.setRefreshHeader(refreshHeader);
+    }
+
+    /**
+     * 设置上啦加载样式
+     * @param refreshFooter
+     */
+    public void ReshfreFootStyle(RefreshFooter refreshFooter){
+        smartRefreshLayout.setRefreshFooter(refreshFooter);
+    }
+
+    /**
+     * 设置头部和底部 上啦活下来是否偏移
+     * @param headIsTran
+     * @param footIsTran
+     */
+    public void setEndableFootAndHeadTrans(boolean headIsTran,boolean footIsTran){
+        smartRefreshLayout.setEnableFooterTranslationContent(footIsTran);
+        smartRefreshLayout.setEnableHeaderTranslationContent(headIsTran);
+    }
+
+    /**
+     * 设置刷新样式主题颜色
+     */
+    public void setPrimaryColorsId(@ColorRes int... primaryColorId){
+        smartRefreshLayout.setPrimaryColorsId(primaryColorId);
+    }
+}

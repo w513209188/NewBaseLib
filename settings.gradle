@@ -1,0 +1,6 @@
+include ':app',':jpush_common', ':refresh-header', ':refresh-layout',
+        ':jshape_common',':pop_common',
+        ':rxbus_common',
+        ':base_common'
+
+

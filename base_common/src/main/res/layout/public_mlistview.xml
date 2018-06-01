@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wb.baselib.view.MyListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/p_mlv"
+    android:layout_width="match_parent" android:layout_height="match_parent"/>
