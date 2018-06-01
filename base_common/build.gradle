@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.luoBo'
+group = '513209188@qq.com'
 android {
 //    compileSdkVersion 25
 //    buildToolsVersion "25.0.2"
