@@ -1,22 +1,26 @@
 package com.wangbo.www.baselibtest;
 
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.wb.baselib.base.activity.BaseActivity;
 import com.wb.baselib.base.activity.MvpActivity;
+import com.wb.baselib.base.fragment.BaseFragment;
 import com.wb.baselib.base.mvp.BasePreaenter;
+import com.wb.baselib.view.BottomBarView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends MvpActivity {
+public class MainActivity extends BaseActivity {
     private Button rebt;
-
-    @Override
-    protected BasePreaenter onCreatePresenter() {
-        return null;
-    }
+    private BottomBarView test_bt;
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +98,26 @@ public class MainActivity extends MvpActivity {
     }
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        test_bt=getViewById(R.id.test_bt);
+        List<BaseFragment> fragments=new ArrayList<>();
+        fragments.add(new TestFragment());
+        fragments.add(new TestFragment());
+        fragments.add(new TestFragment());
+        test_bt.setBottomNoIcon(R.mipmap.tab_course_no,R.mipmap.tab_index_no,R.mipmap.tab_myserf_no)
+                .setBottomSelectIcon(R.mipmap.tab_course_yes,R.mipmap.tab_index_yes,R.mipmap.tab_myserf_yes)
+                .setBottomTitles("首页","课程","个人")
+                .setFragments(fragments)
+                .bindFrament(getSupportFragmentManager());
+        test_bt.setBadge(2,"草");
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+
     }
 
     @Override

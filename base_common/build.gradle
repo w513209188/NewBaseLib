@@ -70,6 +70,7 @@ dependencies {
     api deps.titlebar
     api deps.banner
     api deps.ViewPagerIndicator
+    api deps.JPTabBar
     //router
     api deps.arouter_api
     compile project(':rxbus_common')

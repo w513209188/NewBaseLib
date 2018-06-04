@@ -8,6 +8,7 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
+        applicationId "com.wangbo.www.baselibtest"
         aaptOptions.cruncherEnabled = false
         aaptOptions.useNewCruncher = false
         multiDexEnabled true
@@ -23,7 +24,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //    compile 'com.github.w513209188:wBaseLib:v1.0.1'
-    compile 'com.android.support:multidex:1.0.1'
+//    compile 'com.android.support:multidex:1.0.1'
         compile project(path: ':base_common')
 //    implementation project(':refresh-header')
 }
