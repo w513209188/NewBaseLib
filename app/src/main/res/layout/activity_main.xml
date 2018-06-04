@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/red"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-   <com.wb.baselib.view.BottomBarView
+   <com.wb.baselib.view.TopBarView
+       android:layout_marginTop="50dp"
+       tv:fillStatusBar="false"
        android:id="@+id/test_bt"
+       tv:titleBarColor="@color/main_bg"
+       tv:titleBarHeight="50dp"
+       tv:leftText="你猜"
+       tv:leftTextSize="20dp"
+       tv:leftType="textView"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+       android:layout_height="wrap_content"/>
 
 </LinearLayout>

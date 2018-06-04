@@ -67,7 +67,7 @@ dependencies {
     //    api deps.SmartRefreshLayout
     //    api deps.SmartRefreshHeader
     compile project(path: ':pop_common')
-    api deps.titlebar
+//    api deps.titlebar
     api deps.banner
     api deps.ViewPagerIndicator
     api deps.JPTabBar

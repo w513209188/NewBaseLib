@@ -101,17 +101,20 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        test_bt=getViewById(R.id.test_bt);
-        List<BaseFragment> fragments=new ArrayList<>();
-        fragments.add(new TestFragment());
-        fragments.add(new TestFragment());
-        fragments.add(new TestFragment());
-        test_bt.setBottomNoIcon(R.mipmap.tab_course_no,R.mipmap.tab_index_no,R.mipmap.tab_myserf_no)
-                .setBottomSelectIcon(R.mipmap.tab_course_yes,R.mipmap.tab_index_yes,R.mipmap.tab_myserf_yes)
-                .setBottomTitles("首页","课程","个人")
-                .setFragments(fragments)
-                .bindFrament(getSupportFragmentManager());
-        test_bt.setBadge(2,"草");
+
+//        test_bt=getViewById(R.id.test_bt);
+//        List<BaseFragment> fragments=new ArrayList<>();
+//        fragments.add(new TestFragment());
+//        fragments.add(new TestFragment());
+//        fragments.add(new TestFragment());
+//        test_bt.setBottomNoIcon(R.mipmap.tab_course_no,R.mipmap.tab_index_no,R.mipmap.tab_myserf_no)
+//                .setBottomSelectIcon(R.mipmap.tab_course_yes,R.mipmap.tab_index_yes,R.mipmap.tab_myserf_yes)
+//                .setBottomTextSelectColor(R.color.main_bg)
+//                .setBottomTextNoColor(R.color.black)
+//                .setBottomTitles("首页","课程","个人")
+//                .setFragments(fragments)
+//                .bindFrament(getSupportFragmentManager());
+//        test_bt.setBadge(2,"草");
     }
 
     @Override
