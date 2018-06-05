@@ -77,4 +77,5 @@ dependencies {
     compile project(':jpush_common')
     implementation project(':refresh-header')
     implementation project(':refresh-layout')
+    implementation deps.support.multidex
 }

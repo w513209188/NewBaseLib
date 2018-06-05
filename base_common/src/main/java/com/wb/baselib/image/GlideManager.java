@@ -1,9 +1,14 @@
 package com.wb.baselib.image;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.wb.baselib.cache.GlideCatchUtil;
+import com.wb.baselib.interfaces.GlideBitmapCall;
 
 /**
  * 这个是glide处理工具类
@@ -47,6 +52,49 @@ public class GlideManager {
     public void setRoundPhoto(ImageView imageViewm, int res, Context mContext, String path){
         Glide.with(mContext).load(path).error(res).placeholder(res).transform(new GlideCircleTransform(mContext)).into(imageViewm);
     }
-    public void getGlideCacherSize(){
+
+    /**
+     * 获取图片缓存大小
+     * @param context
+     * @return
+     */
+    public String getGlideCacherSize(Context context){
+        try {
+            return   GlideCatchUtil.getInstance(context).getCacheSize();
+        }catch (Exception e){
+            return "0kb";
+        }
+    }
+
+    /**
+     * 清除图片缓存
+     * @param context
+     * @return
+     */
+    public boolean clearCache(Context context){
+        try {
+            GlideCatchUtil.getInstance(context).cleanCatchDisk();
+            GlideCatchUtil.getInstance(context).clearCacheDiskSelf();
+            GlideCatchUtil.getInstance(context).clearCacheMemory();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+    }
+
+    /**
+     * 获取图片的 bitmap
+     * @param context
+     * @param path
+     * @param glideBitmapCall
+     */
+    public void getImagBitmap(Context context, String path, final GlideBitmapCall glideBitmapCall){
+        Glide.with(context).load(path).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                glideBitmapCall.getImagBitmap(resource);
+            }
+        });
     }
 }

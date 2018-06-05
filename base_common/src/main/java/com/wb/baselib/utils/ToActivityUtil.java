@@ -13,7 +13,7 @@ import java.util.List;
  * cj
  */
 public class ToActivityUtil {
-    public static ToActivityUtil toActivityUtil;
+    private static ToActivityUtil toActivityUtil;
     public static ToActivityUtil newInsance(){
         if(toActivityUtil==null){
             toActivityUtil=new ToActivityUtil();

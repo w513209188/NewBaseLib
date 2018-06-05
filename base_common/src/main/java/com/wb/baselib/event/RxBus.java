@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
-public class RxBus {
+    public class RxBus {
     private HashMap<String, CompositeDisposable> mSubscriptionMap;
     private static volatile RxBus mRxBus;
     private final Subject<Object> mSubject;

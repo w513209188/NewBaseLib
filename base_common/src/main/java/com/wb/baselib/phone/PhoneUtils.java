@@ -11,9 +11,20 @@ import android.graphics.Point;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Surface;
 import android.view.WindowManager;
 
+
+import com.wb.baselib.bean.AppUpdateBean;
+import com.wb.baselib.prase.GsonUtils;
+
+import org.json.JSONObject;
+import org.lzh.framework.updatepluginlib.UpdateConfig;
+import org.lzh.framework.updatepluginlib.model.CheckEntity;
+import org.lzh.framework.updatepluginlib.model.HttpMethod;
+import org.lzh.framework.updatepluginlib.model.Update;
+import org.lzh.framework.updatepluginlib.model.UpdateParser;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -24,7 +35,7 @@ import java.util.regex.Pattern;
  */
 
 public class PhoneUtils {
-    public static PhoneUtils phoneUtils;
+    private static PhoneUtils phoneUtils;
     public static PhoneUtils newInstance(){
         if(phoneUtils==null){
             phoneUtils=new PhoneUtils();
@@ -348,5 +359,71 @@ public class PhoneUtils {
                 return info.processName;//返回包名
         }
         return "";
+    }
+
+    /**
+     * 版本更新
+     * @param url
+     */
+    public void updateApp(String url) {
+        CheckEntity ch=new CheckEntity();
+        ch.setMethod(HttpMethod.GET);
+        ch.setUrl(url);
+        UpdateConfig.getConfig()
+                .checkEntity(ch)
+                .jsonParser(new UpdateParser() {
+                    @Override
+                    public Update parse(String httpResponse) {
+                        try {
+                            JSONObject obj = new JSONObject(httpResponse);
+                            // 此处创建一个Update对象
+                            Update update = new Update(httpResponse);
+                            // 此apk包的下载地址
+                            update.setUpdateUrl(obj.optString("update_url"));
+                            // 此apk包的版本号
+                            update.setVersionCode(obj.optInt("update_ver_code"));
+                            // 此apk包的版本名称
+                            update.setVersionName(obj.optString("update_ver_name"));
+                            // 此apk包的更新内容
+                            update.setUpdateContent(obj.optString("update_content"));
+                            // 此apk包是否为强制更新
+                            update.setForced(obj.optBoolean("update_force"));
+                            // 是否显示忽略此次版本更新按钮
+                            update.setIgnore(obj.optBoolean("update_ignore"));
+                            return update;
+                        }catch (Exception e){
+                            return null;
+                        }
+                        // 返回此update对象。提供给框架使用
+//                        try {
+//                             JSONObject object = new JSONObject(httpResponse);
+//                            AppUpdateBean bean= GsonUtils.newInstance().getBean(httpResponse, AppUpdateBean.class);
+//                            Update update = new Update(httpResponse);
+//                            // 此apk包的更新时间
+//                            update.setUpdateTime(System.currentTimeMillis());
+//                            // 此apk包的下载地址
+//                            update.setUpdateUrl(bean.getData().getVersion_info().getApk_address());
+//                            // 此apk包的版本号
+//                            update.setVersionCode(Integer.parseInt(bean.getData().getVersion_info().getVersion_code()));
+//                            // 此apk包的版本名称
+//                            update.setVersionName(bean.getData().getVersion_info().getVersion_name());
+//                            // 此apk包的更新内容
+//                            update.setUpdateContent(bean.getData().getVersion_info().getVersion_detail());
+//                            // 此apk包是否为强制更新
+//                            if(bean.getData().getVersion_info().getIs_force_update()==null||bean.getData().getVersion_info().getIs_force_update().equals("")){
+//                                update.setForced(true);
+//                            }else if(bean.getData().getVersion_info().getIs_force_update().equals("0")){
+//                                update.setForced(false);
+//                            }else {
+//                                update.setForced(true);
+//                            }
+//                            update.setIgnore(false);
+//                            return update;
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            return null;
+//                        }
+                    }
+                });
     }
 }

@@ -3,6 +3,7 @@ package com.wb.baselib;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.hss01248.dialog.ActivityStackManager;
@@ -21,7 +22,7 @@ import org.lzh.framework.updatepluginlib.model.UpdateParser;
 
 import java.util.List;
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     public static final String ROOT_PACKAGE = "ly.rrnjnx.com";
 
@@ -102,55 +103,5 @@ public class BaseApplication extends Application {
             }
         });
     }
-    //版本更新
-    public void updateApp(String updataApp) {
-        CheckEntity ch=new CheckEntity();
-        ch.setMethod(HttpMethod.GET);
-        ch.setUrl(updataApp);
-        UpdateConfig.getConfig()
-                .checkEntity(ch)
-                .jsonParser(new UpdateParser() {
-                    @Override
-                    public Update parse(String httpResponse) {
-                        Log.e("获取到的版本更新",httpResponse);
-                        try {
-//                    JSONObject object = new JSONObject(httpResponse);
-                            AppUpdateBean bean= GsonUtils.newInstance().getBean(httpResponse, AppUpdateBean.class);
-                            Update update = new Update(httpResponse);
-                            // 此apk包的更新时间
-                            update.setUpdateTime(System.currentTimeMillis());
-                            // 此apk包的下载地址
-                            update.setUpdateUrl(bean.getData().getVersion_info().getApk_address());
-                            // 此apk包的版本号
-                            update.setVersionCode(Integer.parseInt(bean.getData().getVersion_info().getVersion_code()));
-                            // 此apk包的版本名称
-                            update.setVersionName(bean.getData().getVersion_info().getVersion_name());
-                            // 此apk包的更新内容
-                            update.setUpdateContent(bean.getData().getVersion_info().getVersion_detail());
-                            // 此apk包是否为强制更新
-                            if(bean.getData().getVersion_info().getIs_force_update()==null||bean.getData().getVersion_info().getIs_force_update().equals("")){
-                                update.setForced(true);
-                            }else if(bean.getData().getVersion_info().getIs_force_update().equals("0")){
-                                update.setForced(false);
-                            }else {
-                                update.setForced(true);
-                            }
-                            update.setIgnore(false);
-                            // 是否显示忽略此次版本更新按钮
-//                            if(bean.getData().getIs_ignore_version()==null||bean.getData().getIs_ignore_version().equals("")){
-//                                update.setIgnore(true);
-//                            }else if(bean.getData().getIs_ignore_version().equals("0")){
-//                                update.setIgnore(false);
-//                            }else {
-//                                update.setIgnore(true);
-//                            }
 
-                            return update;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return null;
-                        }
-                    }
-                });
-    }
 }

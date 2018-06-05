@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
    <com.wb.baselib.view.TopBarView
        android:layout_marginTop="50dp"
-       tv:fillStatusBar="false"
+       tv:fillStatusBar="true"
        android:id="@+id/test_bt"
        tv:titleBarColor="@color/main_bg"
        tv:titleBarHeight="50dp"

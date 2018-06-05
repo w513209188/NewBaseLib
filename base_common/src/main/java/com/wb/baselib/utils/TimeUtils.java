@@ -11,7 +11,7 @@ import java.util.Locale;
  */
 
 public class TimeUtils {
-    public static TimeUtils timeUtils;
+    private static TimeUtils timeUtils;
     public static TimeUtils newInsantce(){
         if(timeUtils==null){
             timeUtils=new TimeUtils();
