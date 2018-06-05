@@ -31,7 +31,7 @@ BaseLib是一个提供了常用模块的安卓基础开发库。 应对快速开
 
 compile  'com.github.w513209188:NewBaseLib:v1.0.2'
 
-### 1.基础库使用介绍   戳这里  ☞ [传送门](https://www.jianshu.com/p/7762e97176c5）
+### 1.基础库使用介绍   戳这里  ☞ [传送门](https://www.jianshu.com/p/7762e97176c5)
 
 ### 2.网络库的使用   戳这里  ☞ [传送门](https://www.jianshu.com/p/198d40611ade)
 
