@@ -19,7 +19,7 @@
             android:layout_height="1dp"
             android:background="@color/fgx"
             android:layout_above="@+id/tabbar" />
-        <com.jpeng.jptabbar.JPTabBar
+        <com.wb.baselib.view.JPTabBar
             android:layout_alignParentBottom="true"
             xmlns:jp="http://schemas.android.com/apk/res-auto"
             android:id="@+id/tabbar"

@@ -14,12 +14,10 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-
-import com.jpeng.jptabbar.JPTabBar;
-import com.jpeng.jptabbar.OnTabSelectListener;
 import com.wb.baselib.R;
 import com.wb.baselib.adapter.ViewPageAdapter;
 import com.wb.baselib.base.fragment.BaseFragment;
+import com.wb.baselib.jptabbar.OnTabSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
