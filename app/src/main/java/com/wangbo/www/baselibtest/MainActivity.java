@@ -110,12 +110,12 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PerMissionsManager.newInstance().getUserPerMissions(MainActivity.this, new PerMissionCall() {
-            @Override
-            public void userPerMissionStatus(boolean is) {
-                //如果 is为false 说明声明权限失败,否则就是表示声明成功
-            }
-        },new String[]{"要声明的权限"});
+//        PerMissionsManager.newInstance().getUserPerMissions(MainActivity.this, new PerMissionCall() {
+//            @Override
+//            public void userPerMissionStatus(boolean is) {
+//                //如果 is为false 说明声明权限失败,否则就是表示声明成功
+//            }
+//        },new String[]{"要声明的权限"});
 //        test_bt=getViewById(R.id.test_bt);
 //        List<BaseFragment> fragments=new ArrayList<>();
 //        fragments.add(new TestFragment());
@@ -131,10 +131,10 @@ public class MainActivity extends BaseActivity {
 //        test_bt.setBadge(2,"草");
 
 
-        HttpConfig httpConfig=new HttpConfig.HttpConfigBuilder()
-                .setmBaseUrl("请求地址的域名（域名、域名、域名，重要的事情说三遍）")
-                .setUseCustGson(false)
-                .build();
+//        HttpConfig httpConfig=new HttpConfig.HttpConfigBuilder()
+//                .setmBaseUrl("请求地址的域名（域名、域名、域名，重要的事情说三遍）")
+//                .setUseCustGson(false)
+//                .build();
 // 这里的域名指的是 http://www.baidu.com/而不是 http://www.baidu.com/index?....
 //        Observable ob=HttpManager.newInstance().getService(BasicsApiService.class).userLogin("dsfdsfdsfds");
 //        HttpManager.newInstance().commonRequest(ob, new Observer() {

@@ -29,7 +29,7 @@ BaseLib是一个提供了常用模块的安卓基础开发库。 应对快速开
 
 仓库：maven { url "https://jitpack.io" }
 
-compile  'com.github.w513209188:NewBaseLib:v1.0.3'
+compile  'com.github.w513209188:NewBaseLib:v1.0.4'
 
 ### 1.基础库使用介绍   戳这里  ☞ [传送门](https://www.jianshu.com/p/7762e97176c5)
 
