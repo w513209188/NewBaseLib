@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.wangbo.www.baselibtest.api.BasicsApiService;
 import com.wb.baselib.base.activity.BaseActivity;
@@ -15,6 +16,7 @@ import com.wb.baselib.base.fragment.BaseFragment;
 import com.wb.baselib.base.mvp.BasePreaenter;
 import com.wb.baselib.http.HttpConfig;
 import com.wb.baselib.http.HttpManager;
+import com.wb.baselib.image.GlideManager;
 import com.wb.baselib.permissions.PerMissionsManager;
 import com.wb.baselib.permissions.interfaces.PerMissionCall;
 import com.wb.baselib.view.BottomBarView;
@@ -105,11 +107,13 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
-
+    private ImageView img;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        img=getViewById(R.id.img);
+        GlideManager.getInstance().setCommonPhoto(img,R.drawable.back,MainActivity.this,"fsfsdfsd",true);
 //        PerMissionsManager.newInstance().getUserPerMissions(MainActivity.this, new PerMissionCall() {
 //            @Override
 //            public void userPerMissionStatus(boolean is) {
