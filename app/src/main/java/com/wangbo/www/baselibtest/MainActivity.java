@@ -1,5 +1,6 @@
 package com.wangbo.www.baselibtest;
 
+import android.Manifest;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.shizhefei.view.indicator.IndicatorViewPager;
+import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.wangbo.www.baselibtest.api.BasicsApiService;
 import com.wb.baselib.base.activity.BaseActivity;
 import com.wb.baselib.base.activity.MvpActivity;
@@ -20,6 +23,7 @@ import com.wb.baselib.image.GlideManager;
 import com.wb.baselib.permissions.PerMissionsManager;
 import com.wb.baselib.permissions.interfaces.PerMissionCall;
 import com.wb.baselib.view.BottomBarView;
+import com.wb.baselib.view.MyViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,13 +111,27 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
-    private ImageView img;
+    private Button img;
+
+    private ScrollIndicatorView scrollIndicatorView;
+    private MyViewPager myViewPager;
+    private IndicatorViewPager indicatorViewPager;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         img=getViewById(R.id.img);
-        GlideManager.getInstance().setCommonPhoto(img,R.drawable.back,MainActivity.this,"fsfsdfsd",true);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PerMissionsManager.newInstance().getUserPerMissions(MainActivity.this, new PerMissionCall() {
+//                    @Override
+                    public void userPerMissionStatus(boolean b) {
+                        Log.e("权限执行了","---"+b);
+                    }
+                },new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE});
+            }
+        });
 //        PerMissionsManager.newInstance().getUserPerMissions(MainActivity.this, new PerMissionCall() {
 //            @Override
 //            public void userPerMissionStatus(boolean is) {
