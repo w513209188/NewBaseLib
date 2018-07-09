@@ -17,24 +17,17 @@ import com.wb.baselib.R;
 
 public class RefreshUtils {
     private static  RefreshUtils refreshUtils;
-    private SmartRefreshLayout smartRefreshLayout;
-    private Context mContext;
+    private static SmartRefreshLayout smartRefreshLayout;
+    private static Context mContext;
     public static RefreshUtils getInstance(SmartRefreshLayout refreshLayout, Context context){
+        smartRefreshLayout=refreshLayout;
+        mContext=context;
         if(refreshUtils==null){
             refreshUtils=new RefreshUtils();
         }
         return refreshUtils;
     }
 
-    /**
-     * 初始化控件
-     * @param refreshLayout
-     * @param context
-     */
-    public void initRefresh(SmartRefreshLayout refreshLayout, Context context){
-        this.smartRefreshLayout=refreshLayout;
-        this.mContext=context;
-    }
     /**
      * 默认样式
      */
