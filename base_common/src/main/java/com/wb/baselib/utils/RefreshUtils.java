@@ -19,7 +19,7 @@ public class RefreshUtils {
     private static  RefreshUtils refreshUtils;
     private SmartRefreshLayout smartRefreshLayout;
     private Context mContext;
-    public static RefreshUtils getInstance(){
+    public static RefreshUtils getInstance(SmartRefreshLayout refreshLayout, Context context){
         if(refreshUtils==null){
             refreshUtils=new RefreshUtils();
         }
@@ -27,13 +27,19 @@ public class RefreshUtils {
     }
 
     /**
-     * 初始化默认样式
+     * 初始化控件
      * @param refreshLayout
      * @param context
      */
-    public void initRefreSh(SmartRefreshLayout refreshLayout, Context context){
+    public void initRefresh(SmartRefreshLayout refreshLayout, Context context){
         this.smartRefreshLayout=refreshLayout;
         this.mContext=context;
+    }
+    /**
+     * 默认样式
+     */
+    public void defaultRefreSh(){
+        smartRefreshLayout.setRefreshHeader(new WaterDropHeader(mContext));
         smartRefreshLayout.setRefreshFooter(new BallPulseFooter(mContext).setSpinnerStyle(SpinnerStyle.Scale));
         smartRefreshLayout.setEnableFooterTranslationContent(true);
         smartRefreshLayout.setEnableHeaderTranslationContent(false);
@@ -71,5 +77,16 @@ public class RefreshUtils {
      */
     public void setPrimaryColorsId(@ColorRes int... primaryColorId){
         smartRefreshLayout.setPrimaryColorsId(primaryColorId);
+    }
+
+    /**
+     * 关闭各种刷新加载，并是否开启加载更多
+     * @param is
+     */
+    public void isLoadData(boolean is) {
+        smartRefreshLayout.finishRefresh();
+        smartRefreshLayout.finishLoadMore();
+        smartRefreshLayout.setEnableLoadMore(is);
+        smartRefreshLayout.setEnableRefresh(!is);
     }
 }
