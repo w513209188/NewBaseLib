@@ -17,8 +17,8 @@ public abstract class MvpFragment<P extends BasePreaenter> extends LazyFragment 
         if (onCreatePresenter() != null) {
             mPresenter = onCreatePresenter();
         }
-        initView();
-        setListener();
+//        initView();
+//        setListener();
     }
     @Override
     protected void onDestroyViewLazy() {
