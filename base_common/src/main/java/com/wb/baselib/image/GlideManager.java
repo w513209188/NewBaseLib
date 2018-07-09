@@ -42,17 +42,22 @@ public class GlideManager {
 
     }
 
-    /**
-     * 设置原形图片
-     * @param imageViewm
-     * @param res 占位图
-     * @param mContext
-     * @param path 图片地址
-     */
-    public void setRoundPhoto(ImageView imageViewm, int res, Context mContext, String path){
+
+    public void setGlideRoundTransImage(ImageView imageViewm, int res, Context mContext, String path){
         Glide.with(mContext).load(path).error(res).placeholder(res).transform(new GlideCircleTransform(mContext)).into(imageViewm);
     }
 
+    /**
+     * 实现圆角图片
+     * @param imageViewm
+     * @param res
+     * @param mContext
+     * @param path
+     * @param dp 圆角的度数
+     */
+    public void setRoundPhoto(ImageView imageViewm, int res, Context mContext, String path,int dp){
+        Glide.with(mContext).load(path).error(res).placeholder(res).transform(new GlideRoundTransform(mContext, dp)).into(imageViewm);
+    }
     /**
      * 获取图片缓存大小
      * @param context
