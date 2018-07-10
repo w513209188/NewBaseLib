@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BaseApplication extends MultiDexApplication {
 
-    public static final String ROOT_PACKAGE = "ly.rrnjnx.com";
+    public static  String ROOT_PACKAGE = "";
 
     private static BaseApplication sInstance;
 
@@ -38,6 +38,7 @@ public class BaseApplication extends MultiDexApplication {
         super.onCreate();
         sInstance = this;
         AppUtils.init(this);
+        Log.e("这个是ROOT_PACK",ROOT_PACKAGE);
         mAppDelegateList = ClassUtils.getObjectsWithInterface(this, IApplicationDelegate.class, ROOT_PACKAGE);
         for (IApplicationDelegate delegate : mAppDelegateList) {
             delegate.onCreate();
